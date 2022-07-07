@@ -7,10 +7,19 @@
     </head>
     <body>
         <h1>Budget Manager</h1>
-        <h2 class="spend">Total Spend: $<span id="total">0</span></h2>
-        <h2 class="limit">Limit: $<span id="limit"></span></h2>
+        <h2 class="spend">Total Spend: <span id="total">0</span></h2>
+        <h2 class="limit">Limit: <span id="limit"></span></h2>
         <h3>Enter Amount:</h3>
         <input type="text" id="amount">
-        <input type="submit" id="spendAmount" value="Spend" class="input1 btn">
+        <div>
+            <input type="submit" id="spendAmount" value="Spend" class="input1 btn">
+        </div>
+        
+        <label for="change"><h3>Change Currency:</h3></label>
+        <select name="currency" id="currency">
+            <option value="Dollar">Dollar</option>
+            <option value="Rupee">Rupee</option>
+            <option value="Euro">Euro</option>
+        </select>
     </body>
 </html>

@@ -15,7 +15,7 @@ function isInt(value){
 chrome.contextMenus.onClicked.addListener(function(clickData){
     if(clickData.menuItemId=="spendMoney"&&clickData.selectionText){
         if(isInt(clickData.selectionText)){
-            chrome.tts.speak("you have added "+clickData.selectionText+" dollars in your budget manager",{'rate':1.2});
+            
             chrome.storage.sync.get(['total','limit'],function(budget){
                 var newTotal=0;
                 if(budget.total){
@@ -30,6 +30,7 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
                             title: 'Limit reached!',
                             message: "Uh oh! Looks like you've reached your limit!"
                         };
+                        chrome.tts.speak("Oops! You have reached your limit!",{'rate':1.4});
                         chrome.notifications.create('limitNotif',notifOptions);
                     }
                 });
