@@ -1,9 +1,13 @@
 $(function(){
 
-    chrome.storage.sync.get(['total','limit'],function(budget){
+    chrome.storage.sync.get(['total','limit','curr'],function(budget){
         $('#total').text(budget.total);
+        if(budget.limit)
         $('#limit').text(budget.limit);
-    })
+        else
+        $('#limit').text("No limit set!");
+        $('#curname').text(budget.curr);
+    });
 
     $('#spendAmount').click(function(){
         chrome.storage.sync.get(['total','limit'],function(budget){
@@ -56,8 +60,13 @@ $(function(){
 
           chrome.storage.sync.set({'curr':curr},function(){});
           console.log(curr);
+          if(budget.limit)
+          $('#limit').text(budget.limit);
+          else
+          $('#limit').text("No limit set!");
 
           if(pre!=curr){
+            $('#curname').text(curr);
             if(pre=='Dollar'&&curr=='Rupee'){
                val=budget.total*79;
                limit=budget.limit*79;
@@ -86,7 +95,10 @@ $(function(){
              limit=Math.round(limit);
 
              $('#total').text(val);
-             $('#limit').text(limit);
+             if(budget.limit)
+            $('#limit').text(limit);
+            else
+            $('#limit').text("No limit set!");
              chrome.storage.sync.set({'total':val},function(){});
              chrome.storage.sync.set({'limit':limit},function(){});
              
